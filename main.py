@@ -4,6 +4,7 @@ import pygame
 import sys
 import config # Import the config module
 
+
 def init_game():
     pygame.init()
     screen = pygame.display.set_mode((config.WINDOW_WIDTH, config.WINDOW_HEIGHT)) # Use constants from config
@@ -19,13 +20,23 @@ def handle_events():
                 return False
     return True
 
+
+def draw_text(screen, text, font, text_col, x, y):
+    img = font.render(text, True, text_col)
+    screen.blit(img, (x,y))
+
 def main():
     screen = init_game()
     clock = pygame.time.Clock() # Initalize the clock here
+
+     
     running = True
     while running:
         running = handle_events()
         screen.fill(config.GREEN) # Use color from config
+
+        text_font = pygame.font.SysFont("Arial", 30)
+        draw_text(screen, 'Hello World', text_font, config.BLUE, 0, 0)
         pygame.display.flip()
 
         # Limit the frame rate to the specified frames per second
